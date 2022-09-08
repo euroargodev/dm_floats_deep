@@ -1,0 +1,38 @@
+% configuration file
+%-------------------
+
+% INPUT NETCDF files DIRECTORY (Files will be searched in the directory: DIR_FTP/flt_name/profiles/*.nc)
+%-------------------
+DIR_FTP=/export/home1/ccabanes/data/FTP_ARGO/coriolis/
+
+% OUTPUT netcdf files with Cpcor corrections are put in this directory (corr_cpcor_in_netcdf will put files in DIR_DM_CPCOR/$flt_name$/profiles/)
+%-------------------
+
+DIR_DM_CPCOR=/export/home1/ccabanes/data/tmp/DM_FILES_CP/
+
+
+% DIR_OW: OW data directory
+%-------------------
+% CALIBRATION files from OW: cal_$float_name$.mat ( MAIN_write_dmqc_file will look in DIR_OW/float_calib/$flt_name$/)
+% SOURCE files for OW:  $float_name$.mat ( programs will look in DIR_OW/float_source/$flt_name$/) 
+
+DIR_OW=/export/home1/ccabanes/data/tmp/
+
+
+% OUTPUT files with final DMQC corrections (Cpcor+OWC) are put in this directory (MAIN_write_dmqc_files will put files in DIR_DM_FINAL/$flt_name$/profiles/)
+%-------------------
+DIR_DM_FINAL=/export/home1/ccabanes/data/tmp/DM_FILES/
+
+
+%%% INFORMATIONS ON OW METHOD  (default values used in calibration comments)
+%----------------------------
+VERSION=3.00
+BASEREF=CTD2021V01
+
+
+%%% INFORMATIONS ON  DMQC OPERATOR (to be written in global attributes :comment_dmqc_operator = "PRIMARY | OPERATOR_ORCID_ID | OPERATOR_NAME, OPERATOR_INSTITUTION") ;
+%---------------------------------
+OPERATOR_ORCID_ID=https://orcid.org/xxxx-xxxx-xxxx-xxxx
+OPERATOR_NAME=MyName
+% eg OPERATOR_INSTITUTION=IF
+OPERATOR_INSTITUTION=XX

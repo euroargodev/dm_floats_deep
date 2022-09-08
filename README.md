@@ -9,6 +9,6 @@ and write intermediate netcdf files (that will be the input for create_float_sou
 
 
 ## How to use?
-Modify \/config.txt  to set your own paths
+Modify \/src\/config.txt  to set your own paths
 
 Use Main_template_deep.m to process deep floats in Delayed Mode.

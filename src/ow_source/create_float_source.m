@@ -42,13 +42,13 @@
 %  04/2018 : C.Cabanes : - possibility to downmoad data from ftp.ifremer.fr (wget call)
 %  06/2018: c.Cabanes  : - replace wget call by matlab function ftp. email as an optional  input
 %
-%  tested with matlab  8.3.0.532 (R2014a)
+%  tested with matlab 9.9.0.1467703 (R2020b)
 %
 %  EXTERNAL LIB
-%  package +libargo:  addpath('../../../dm_floats/lib/')
-%  seawater:  addpath('../../../dm_floats/lib/seawater_330_its90/')
+%  package +libargo:  addpath('dm_floats_deep/lib/')
+%  seawater:  addpath('dm_floats_deep/lib/seawater_330_its90/')
 %
-%  CONFIGURATION file: config.txt;
+%  CONFIGURATION file: dm_floats_deep/config.txt;
 %==================================================
 
 function create_float_source(flt_name, varargin )
@@ -463,8 +463,8 @@ else
     
     [indlevmax,cyclevmax_i]=max(tabnpt);
     
-    % correct cyclevmax when different vertical sampling are used during
-    % the float life.Antonella 07/2022
+    % Correct cyclevmax when different vertical sampling are used during
+    % the float life. Antonella GALLO - 07/2022
     
     [cyclevmax_n]=find(tabnpt==indlevmax);
     vmax_n=PRESINI(end,cyclevmax_n(1));

@@ -17,8 +17,8 @@
 %   HISTORY  : created C. Cabanes - 2020
 %-------------------------------------
 %  EXTERNAL LIB
-%  package +libargo:  addpath('../../../dm_floats/lib/')
-%  GSW matlab routines:  addpath('../../../dm_floats/lib/gsw_matlab_v3_04_TR/')
+%  package +libargo:  addpath('dm_floats_deep/lib/')
+%  GSW matlab routines:  addpath('dm_floats_deep/lib/gsw_matlab_v3_04_TR/')
 % ========================================================
 
 function corr_cpcor_in_netcdf(flt_name,varargin)
@@ -305,10 +305,10 @@ cond_argo_raw = cond_argo.*a1;
 
 CPcor_new = cnew(1);
 M = cnew(2);
-b1 = (1 + CTcor_SBE.*temp_argo + CPcor_new.*pres_argo_corr);
+b1 = (1 + CTcor_SBE.*temp_argo_corr + CPcor_new.*pres_argo_corr);
 
 cond_argo_new = M*cond_argo_raw./b1;
 
 % compute the corresponding psal
-psal_argo_new = gsw_SP_from_C(cond_argo_new,temp_argo,pres_argo_corr);
+psal_argo_new = gsw_SP_from_C(cond_argo_new,temp_argo_corr,pres_argo_corr);
 

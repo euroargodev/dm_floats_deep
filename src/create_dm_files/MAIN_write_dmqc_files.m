@@ -28,11 +28,11 @@
 %  ??/???? : C.Coatanoan: - creation (fichier_nc_dmqc_ovide.m)
 %  from 12/2014 : C.Cabanes : -interactive input, use of +libargo, format 3.1
 %
-%  tested with matlab  8.3.0.532 (R2014a)
+%  tested with matlab  9.9.0.1467703 (R2020b)
 %
 %  EXTERNAL LIB
-%  package +libargo : addpath('dm_float/lib/')
-%  seawater  : addpath('dm_float/lib/seawater_330_its90/')
+%  package +libargo : addpath('dm_float_deep/lib/')
+%  seawater  : addpath('dm_float_deep/lib/seawater_330_its90/')
 %
 %  CONFIGURATION file: config.txt;
 %==================================================
@@ -833,7 +833,7 @@ for ifile=1:length(therep)  % WORK ON EACH FILE
                             n_calib= DIMD.n_calib.dimlength
                         end
                     %end
-                    display(n_calib)
+                    %display(n_calib)
                     FLD.parameter.data(:,n_calib,:,:) = FLD.station_parameters.data;
                     
                     % initialize the calib section with fillvalues.

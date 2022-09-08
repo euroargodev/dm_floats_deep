@@ -5,8 +5,11 @@
 % configuration file : config.txt
 % tested with Matlab '9.9.0.1467703 (R2020b)'
 
+% EXTERNAL LIB
+% Already in ../lib: seawater_330_its90 and +libargo package.
 % You will need to install GSW matlab routines( https://github.com/TEOS-10/GSW-Matlab/releases) - tested with version 3.04
-% already in ../lib: seawater_330_its90  and +libargo package.
+
+
 clear all 
 close all
 
@@ -19,6 +22,7 @@ flt_name = 6902882;
 
 % 1. Cpcor correction is applied in intermediate netcdf files (PSAL_ADJUSTED)
 % These intermediate files are not intended to be distributed on the gdac.
+% Ok for the Deep Arvor float. Requires modification for floats that do not auto-correct pressure.
 addpath(genpath('./correct_cpcor/'))
 
 corr_cpcor_in_netcdf(flt_name,'NEW_CPCOR',-13.58e-8);

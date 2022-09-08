@@ -5,12 +5,13 @@
 % configuration file : config.txt
 % tested with Matlab '9.9.0.1467703 (R2020b)'
 
-
+% You will need to install GSW matlab routines( https://github.com/TEOS-10/GSW-Matlab/releases) - tested with version 3.04
+% already in ../lib: seawater_330_its90  and +libargo package.
 clear all 
 close all
 
 path(pathdef)
-addpath(genpath('../lib/gsw_matlab_v3_04_TR'))
+addpath(genpath('../lib/gsw_matlab_v3_04'))
 addpath('../lib/seawater_330_its90/')
 addpath('../lib/')
 

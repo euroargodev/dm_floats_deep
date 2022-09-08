@@ -40,4 +40,8 @@ addpath(genpath('./create_dm_files/'))
 
 MAIN_write_dmqc_files(flt_name)
 
+% In the interactive part:
+% To the question 'How do you want to store calibration information?', answer 'N_CALIB=N_CALIB+1'
+% and to the question 'Has salinity previously adjusted for Cpcor?' , answer   'YES'
+
 

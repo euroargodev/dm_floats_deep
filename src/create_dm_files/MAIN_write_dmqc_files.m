@@ -210,7 +210,7 @@ for ifile=1:length(therep)  % WORK ON EACH FILE
         
         % Deal with descending profiles at the end. ex 6900046   11/03/2022
         if cycle==max(C_FILE.PROFILE_NO)+1 & direction == 'D'
-         ind_correction = find(cycle-1 > [-1 s.APPLY_upto_CY]& cycle-1<= [s.APPLY_upto_CY max(C_FILE.PROFILE_NO)]);  % correction of last cycle
+            ind_correction = find(cycle-1 > [-1 s.APPLY_upto_CY]& cycle-1<= [s.APPLY_upto_CY max(C_FILE.PROFILE_NO)]);  % correction of last cycle
         end
         
         if isempty(ind_correction)==0
@@ -719,7 +719,7 @@ for ifile=1:length(therep)  % WORK ON EACH FILE
                 if isfield(FLD,'cndc')
                     
                     if ~isfield(FLD,'cndc_adjusted') % remplit les structures CNDC_ADJUSTED
-                         FLD.cndc_adjusted = FLD.cndc; FLD.cndc_adjusted.name='CNDC_ADJUSTED';
+                        FLD.cndc_adjusted = FLD.cndc; FLD.cndc_adjusted.name='CNDC_ADJUSTED';
                         % les valeurs pour les secondary profiles sont remplies
                         % par des fillvalues
                         FLD.cndc_adjusted.data(~is_primary,:)= repmat(FLD.cndc_adjusted.FillValue_,sum(~is_primary),size(FLD.cndc_adjusted.data,2));
@@ -759,11 +759,11 @@ for ifile=1:length(therep)  % WORK ON EACH FILE
                         testunits=libargo.meanoutnan(FLD.cndc.data(n_prof,:)./cndc);
                         % correct units
                         if testunits>9.99&testunits<=10
-                           disp('Wrong units for CNDC in the netcdf file : correction=>/10')
-                           FLD.cndc.data=FLD.cndc.data./10;
+                            disp('Wrong units for CNDC in the netcdf file : correction=>/10')
+                            FLD.cndc.data=FLD.cndc.data./10;
                         elseif testunits<=0.1&testunits>0.099
-                           disp('Wrong units for CNDC in the netcdf file : correction=>x10')
-                           FLD.cndc.data=FLD.cndc.data.*10;
+                            disp('Wrong units for CNDC in the netcdf file : correction=>x10')
+                            FLD.cndc.data=FLD.cndc.data.*10;
                         end
                         
                         switch   thecorrection
@@ -771,7 +771,7 @@ for ifile=1:length(therep)  % WORK ON EACH FILE
                                 
                                 cndc_adjusted =  FLD.cndc.data(n_prof,:);
                                 
-   
+                                
                             case {'LAUNCH_OFFSET'} % launch offset
                                 cndc_adjusted = sw_c3515*sw_cndr( FLD.psal_adjusted.data(n_prof,:),FLD.temp_adjusted.data(n_prof,:),FLD.pres_adjusted.data(n_prof,:)); % mS/cm
                                 cndc_adjusted=cndc_adjusted/10; % 10-1 mS/cm => mhos/m
@@ -779,19 +779,19 @@ for ifile=1:length(therep)  % WORK ON EACH FILE
                                 
                             case {'OW'} % ow correction
                                 cndc_adjusted = C_FILE.pcond_factor(ind_cycle).*FLD.cndc.data(n_prof,:);
-                                 
+                                
                         end
-                       
-                            
-                       cndc_adjusted (isnan(cndc_adjusted)) = FLD.cndc_adjusted.FillValue_;
-                            
-                       FLD.cndc_adjusted.data(n_prof,:) = cndc_adjusted; % mhos/m
-                            
+                        
+                        
+                        cndc_adjusted (isnan(cndc_adjusted)) = FLD.cndc_adjusted.FillValue_;
+                        
+                        FLD.cndc_adjusted.data(n_prof,:) = cndc_adjusted; % mhos/m
+                        
                         
                         FLD.cndc_adjusted_qc.data(n_prof,:)  =  FLD.psal_adjusted_qc.data(n_prof,:); % same QC as PSAL_ADJUSTED
-                         isblank= FLD.psal_adjusted_qc.data=='9';
-                         isfill = isnan(FLD.cndc_adjusted.data);
-                         FLD.cndc_adjusted_qc.data(~isfill&isblank)='4';
+                        isblank= FLD.psal_adjusted_qc.data=='9';
+                        isfill = isnan(FLD.cndc_adjusted.data);
+                        FLD.cndc_adjusted_qc.data(~isfill&isblank)='4';
                         %FLD.cndc_qc.data(n_prof,:)  =
                         %FLD.psal_qc.data(n_prof,:); % same QC as PSAL
                         index_QC4 = strfind(FLD.cndc_adjusted_qc.data(n_prof,:),'4');
@@ -827,11 +827,11 @@ for ifile=1:length(therep)  % WORK ON EACH FILE
                 else
                     n_calib= DIMD.n_calib.dimlength+1;
                     % test if the last field scientific_calib_comment is fillvalue
-                    %if  DIMD.n_calib.dimlength==1 
-                        testfill =FLD.scientific_calib_comment.data(:,DIMD.n_calib.dimlength,:,:)==FLD.scientific_calib_comment.FillValue_;
-                        if libargo.sumel(testfill)==numel(testfill) % parameter est a fillvalue
-                            n_calib= DIMD.n_calib.dimlength
-                        end
+                    %if  DIMD.n_calib.dimlength==1
+                    testfill =FLD.scientific_calib_comment.data(:,DIMD.n_calib.dimlength,:,:)==FLD.scientific_calib_comment.FillValue_;
+                    if libargo.sumel(testfill)==numel(testfill) % parameter est a fillvalue
+                        n_calib= DIMD.n_calib.dimlength
+                    end
                     %end
                     %display(n_calib)
                     FLD.parameter.data(:,n_calib,:,:) = FLD.station_parameters.data;
@@ -1211,9 +1211,9 @@ for ifile=1:length(therep)  % WORK ON EACH FILE
                     comment = s.CORR_TEMP_comment;
                     %CHECK.temp.comment{i}=comment;
                     
-                   if strcmp(FLD.profile_temp_qc.data(n_prof),'F')  % if TEMP was QCed bad for all the profile
-                       comment = ['Bad data; not adjustable. ' ]; % BAD
-                   end
+                    if strcmp(FLD.profile_temp_qc.data(n_prof),'F')  % if TEMP was QCed bad for all the profile
+                        comment = ['Bad data; not adjustable. ' ]; % BAD
+                    end
                     
                     maxl_co = DIM.(lower(FLD.scientific_calib_comment.dim{4})).dimlength;
                     
@@ -1241,7 +1241,42 @@ for ifile=1:length(therep)  % WORK ON EACH FILE
                 else
                     FLD.scientific_calib_date.data(n_prof,n_calib,ind_temp,:)=thedate;
                 end
+                % fill scientific calibration  for  intermediate core
+                % parameters TEMP_STD TEMP_MED PSAL_STD PSAL_MED PRES_MED
+                % TEMP_CNDC NB_SAMPLE_CTD MTIME
+                % --------------------------
+                list_intermediate={'TEMP_STD' 'TEMP_MED' 'PSAL_STD' 'PSAL_MED' 'PRES_MED' 'TEMP_CNDC' 'NB_SAMPLE_CTD' 'MTIME'};
+                theparameters = strtrim(squeeze(FLD.parameter.data(n_prof,n_calib,:,:)));
                 
+                for ilist_ic=1:length(list_intermediate)
+                    
+                    ind_ic = find(ismember(cellstr(theparameters),list_intermediate{ilist_ic}));
+                    
+                    if isempty(ind_ic)==0
+                        eq='not applicable';
+                        l_co = length(eq);
+                        
+                        FLD.scientific_calib_equation.data(n_prof,n_calib,ind_ic,:) = FLD.scientific_calib_equation.FillValue_;
+                        FLD.scientific_calib_equation.data(n_prof,n_calib,ind_ic,1:l_co) = eq;
+                        
+                        coeff='not applicable';
+                        l_co = length(coeff);
+                        FLD.scientific_calib_coefficient.data(n_prof,n_calib,ind_ic,:) = FLD.scientific_calib_coefficient.FillValue_;
+                        FLD.scientific_calib_coefficient.data(n_prof,n_calib,ind_ic,1:l_co) = coeff;
+                        
+                        comment ='not applicable';;
+                        l_co = length(comment);
+                        FLD.scientific_calib_comment.data(n_prof,n_calib,ind_ic,:) = FLD.scientific_calib_comment.FillValue_;
+                        FLD.scientific_calib_comment.data(n_prof,n_calib,ind_ic,1:l_co) = comment;
+                        
+                        
+                        if format_version<2.3
+                            FLD.calibration_date.data(n_prof,n_calib,ind_ic,:)=thedate;
+                        else
+                            FLD.scientific_calib_date.data(n_prof,n_calib,ind_ic,:)=thedate;
+                        end
+                    end
+                end
                 
                 % fill scientific calibration for  CNDC
                 % --------------------------
@@ -1257,7 +1292,7 @@ for ifile=1:length(therep)  % WORK ON EACH FILE
                             eq=['CNDC_ADJUSTED = CNDC']; %modif 08/09/2016
                             %eq='none';
                             if s.THERM==1&&s.ADD_NCALIB==0
-                            equation=[equation s.CTM_equation];
+                                equation=[equation s.CTM_equation];
                             end
                             if str2num(CYC_PSAL_ADJ_QC)==4
                                 equation = 'None'; % BAD
@@ -1384,7 +1419,7 @@ for ifile=1:length(therep)  % WORK ON EACH FILE
                             isblank= FLD.psal_qc.data=='9';
                             isfill = FLD.cndc.data==FLD.cndc.FillValue_;
                             FLD.cndc_qc.data(~isfill&isblank)='4';
-
+                            
                             FLD.scientific_calib_comment.data(n_prof,n_calib,ind_cndc,:) = FLD.scientific_calib_comment.FillValue_;
                             FLD.scientific_calib_comment.data(n_prof,n_calib,ind_cndc,1:l_co) = comment;
                             
